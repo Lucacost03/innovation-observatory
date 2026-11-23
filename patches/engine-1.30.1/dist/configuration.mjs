@@ -132,6 +132,8 @@ export function restoreConfiguration(saved,profiles){
 }
 export function inputStatus(definition,params,profile){
  const source=profile.provenance?.[definition.key],baseline=profile.params[definition.key]??definition.value;
- if(Math.abs(params[definition.key]-baseline)>1e-9)return {status:'edited',note:'Your value differs from this preset. '+(source?.note??definition.help)};
- return {status:source?.status??(definition.design?'design':'assumed'),note:source?.note??definition.help};
+ const sourceNote=source?.note??definition.help;
+ const note=definition.key==='initialParticipationRate'?sourceNote.replace('The model holds this participation share fixed within its changing working-age cohort.','This is the opening participation benchmark. Country age profiles and changing cohorts determine subsequent participation; pension-age responses remain scenario assumptions.'):sourceNote;
+ if(Math.abs(params[definition.key]-baseline)>1e-9)return {status:'edited',note:'Your value differs from this preset. '+note};
+ return {status:source?.status??(definition.design?'design':'assumed'),note};
 }
