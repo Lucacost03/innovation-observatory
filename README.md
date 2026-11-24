@@ -1,13 +1,15 @@
 # Innovation Observatory
 
-Interactive agent-based economic simulator, engine 1.30.1, published at [Innovation Observatory](https://lucacost03.github.io/innovation-observatory/).
+Interactive agent-based economic simulator, engine 1.31.0, published at [Innovation Observatory](https://lucacost03.github.io/innovation-observatory/).
 
-The preserved `source/innovation_observatory_source.zip` is the verified engine 1.30.0 release (original source commit `73eda1b518c677f9eec6d1826bd84e313e211b8f`; SHA256 `7f27eb8de94e035c53c63732bbe6e34a49b20f8be400265276242ddfcc0f4b68`). It remains unchanged for reproduction. Deployments do not require the original host.
+The preserved `source/innovation_observatory_source.zip` is the verified engine 1.30.0 base (SHA256 `7f27eb8de94e035c53c63732bbe6e34a49b20f8be400265276242ddfcc0f4b68`). It remains unchanged. Reviewed source overlays are applied in order from `patches/engine-1.30.1/` and `patches/engine-1.31.0/`, using original project-relative paths.
 
-Reviewed UTF-8 source changes live in `patches/engine-1.30.1/`, with their original project-relative paths. GitHub Actions verifies and restores the base, freezes its engine and presets, overlays the changes, runs the current checks and builds a complete updated source download. The website's downloaded ZIP contains the current full source, retained baseline, executed cases and methods.
+GitHub Actions verifies the base, retains the 1.30 and 1.30.1 engines and inputs, reproduces the historical retirement study, tests the current tax corrections, and builds the complete current source download. Deployments do not require the original host. The website ZIP includes code, frozen baselines, source observations, methods, executed comparisons and tests.
 
-This release corrects pension funding reporting to use final collected worker taxes after fiscal reconciliation. It adds retirement-age comparisons and exact GDP spending breakdowns without changing economic transactions, source data or behavioral coefficients. The audit executes 594 paths and 25,200 annual steps; 5,611,410 values apart from the two corrected pension memos exactly reproduce the prior engine. Saved 1.30.0 settings and schedules are retained.
+Engine 1.31 corrects worker-tax payment allocation: preliminary withholding is returned to its payers, and additional worker-tax requests respect each worker's own payroll and cash. Uncollected requests are disclosed instead of reassigned to unrelated asset holders. A separate fix makes EU business-income-tax controls affect fiscal coverage despite their legacy zero reference. Opening data, preset values, baseline tax targets and behavioural response coefficients are unchanged.
 
-The workflow also checks fiscal/tariff accounting, source migration, 95% inference, participation/import-cost channels, credit policy and noncash pension claims before publishing the static website. Browser-local personal experiment settings are not stored in this repository.
+The controlled audit covers all 30 presets, five common seeds, 120/12-year baseline comparisons and retirement/worker-tax/business-tax interventions. GDP, external accounts, sector cash, public/private debt and pension funding reconcile. The retrospective macro results are mixed: the correction is retained for its verified payment and control logic, not as proof of general forecasting accuracy. The website reports all errors and remaining inequality and long-run weaknesses.
 
-Accounting and software checks do not establish macroeconomic forecast accuracy or causal policy effects. Long-run stress cases and the limitations of the pension, participation and financing rules remain visible in the website and source download.
+The deployed module graph and simulation worker use a shared release identifier, with a cache-regression integration test against the prior engine. The clean source is packaged before deployment-only URL versioning.
+
+Saved 1.30 and 1.30.1 controls and schedules are retained. Personal browser-local experiments are not stored in this repository. Statistical intervals describe model seed uncertainty, not uncertainty about empirical model validity.

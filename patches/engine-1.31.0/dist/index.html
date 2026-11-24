@@ -1,0 +1,210 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Private, reproducible innovation and SFC simulation laboratory"><meta name="theme-color" content="#112e29"><title>Innovation Observatory · Private simulation lab</title><link rel="stylesheet" href="./styles.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23112e29'/%3E%3Cpath d='M12 33V23m12 10V13m12 20V19' stroke='%239ce4bf' stroke-width='5'/%3E%3C/svg%3E"></head><body>
+<aside class="rail"><a class="brand" href="#simulator" aria-label="Innovation Observatory home">▥</a><div class="rail-divider"></div><button data-view="simulator" class="rail-link active" aria-label="Simulator"><b>↗</b><span>Simulate</span></button><button data-view="evidence" class="rail-link" aria-label="Data and validation"><b>▤</b><span>Evidence</span></button><button data-view="guide" class="rail-link" aria-label="How the model works"><b>▧</b><span>Guide</span></button><div class="rail-bottom"><span class="avatar">LC</span>Private lab</div></aside>
+<div class="app-shell"><header class="topbar"><div class="wordmark">INNOVATION <span>OBSERVATORY</span><small>ABM / 01</small></div><div class="topbar-actions"><span class="private-badge">♙ Only you</span></div></header><main><section class="page-heading"><div><div class="eyebrow">YOUR ECONOMY. YOUR EXPERIMENT.</div><h1>Innovation, in motion<span>.</span></h1><p>Change the assumptions. Follow the firms. See the economy respond.</p></div><button class="button secondary" id="export-button" disabled>↓ Export experiment</button></section><div id="load-status" class="status-banner" role="status">Preparing the laboratory…</div>
+<section id="simulator-view" class="view"><div class="audit-notice"><strong>One step is one model year.</strong> 2023 observations inform the opening economy, enterprise birth/death rates and foreign productivity proxies. Firm exit, entry and international learning are enabled. Some baseline paths remain implausible. Use this model to explore assumptions; its policy effects and forecasts are unvalidated. <button class="inline-link" data-view="evidence">Read the audit →</button></div><div id="migration-note" class="status-banner hidden"></div><div class="workspace setup-expanded"><aside class="controls-panel panel" id="economy-setup" aria-label="Economy parameter editor"><div class="controls-heading"><span class="section-index">01</span><div class="setup-title"><h2 id="economy-setup-title" tabindex="-1">Set up your economy</h2><p id="parameter-count">Editable parameters · initial conditions and agent behavior</p></div><div class="setup-actions"><button class="button secondary" id="editor-layout" aria-expanded="true">Use side panel</button><button class="icon-button" id="reset" title="Reset to economy preset with policy, currency, trade and household investment enabled" aria-label="Reset to economy preset">↺</button></div></div><div class="setup-toolbar"><div class="country-block"><label for="country">Economy starting point</label><select id="country"></select><div id="country-meta" class="small muted"></div></div><div class="control-mode"><button class="active" id="simple-mode">Essentials</button><button id="advanced-mode">All parameters</button></div><div class="search-wrap hidden" id="search-wrap"><input id="parameter-search" type="search" placeholder="Find a parameter…" aria-label="Search parameters"></div></div><div class="parameter-scroll" id="parameter-controls"></div><div class="run-box"><div id="run-summary" class="run-summary"></div><button class="button primary" id="run-button">▶ Run simulation</button><button class="button secondary hidden" id="cancel-button">Stop simulation</button><div class="small muted centered">Paired seeds · Runs in your browser</div></div></aside>
+<div class="results-column"><section class="scenario-card panel" id="scenario-setup" aria-labelledby="scenario-title"><div class="section-header"><div><div class="eyebrow">02 / SET UP YOUR EXPERIMENT · THE QUESTION</div><h2 id="scenario-title">What if firms invested more in research?</h2></div><span class="setup-input-badge">INPUTS &amp; ASSUMPTIONS</span></div><p class="scenario-setup-note"><strong>Choose your assumptions before running.</strong> These controls define the experiment. Simulation outcomes appear below after you run it. <button type="button" class="inline-link" id="back-to-economy">↑ Set up your economy</button></p><div class="preset-row" id="scenario-presets"></div><div class="scenario-description" id="scenario-description"></div><div id="scenario-input-summary" aria-live="polite"></div><div class="event-launcher"><div><div class="eyebrow">SCHEDULE AN OUTSIDE EVENT</div><h3>Exogenous events &amp; shocks</h3><p class="small muted">Choose the timing, combine direct effects and explore how the economy responds.</p></div><button type="button" class="button secondary" id="open-events" aria-haspopup="dialog">Open event planner</button></div><div id="event-overview" class="event-overview"></div><button class="text-button" id="timeline-toggle" aria-expanded="false">Parameter changes over time ↗</button><div class="timeline-editor hidden" id="timeline-editor"><div class="subheading">Parameter paths <button class="text-button" id="add-path">+ Add path</button></div><p class="small muted">Step keeps the new value. Ramp moves gradually, then keeps it. Pulse returns to the starting value after its end period. Paths apply in order.</p><div id="path-rows"></div><div class="subheading">Scheduled events <button type="button" class="text-button" id="add-shock" aria-haspopup="dialog">Edit in event planner ↗</button></div><p class="small muted">Manage event timing and effects in the separate event planner. Parameter paths above remain available for other changing assumptions.</p><div id="shock-rows"></div><div id="reference-controls" class="file-import"></div></div></section>
+<section class="panel comparison-card" id="comparison-panel"></section><div class="outcome-divider"><span>03 / SIMULATION OUTCOMES</span><p>Computed from the assumptions above when you run the model.</p></div><section class="panel content-panel income-outcomes" id="income-outcomes" aria-labelledby="income-heading"><div class="section-header"><div><div class="eyebrow">PRODUCTION, INCOME AND FINANCE</div><h2 id="income-heading">GDP income and TFP</h2></div><label>Displayed economy<select id="outcome-economy"><option value="scenario">Scenario</option><option value="baseline">Reference</option></select></label></div><div class="outcome-time-control"><label for="outcome-time">Display year</label><input type="range" id="outcome-time" min="0" max="40" value="40" aria-label="GDP income display year"><output id="outcome-year-label" for="outcome-time">Year 40</output></div><p id="income-context" class="small muted"></p><div class="income-outcome-grid"><div id="income-breakdown"></div><article class="tfp-outcome"><h3>Firm-technology TFP index</h3><strong id="tfp-level-value">—</strong><p id="tfp-benchmark-note" class="small"></p><button type="button" class="button secondary" data-price-metric="tfpLevel">Chart output-based TFP proxy ↑</button><p id="tfp-level-note" class="small"></p><button type="button" class="button secondary" data-price-metric="technologyTFPLevel">Chart technology TFP ↑</button><button type="button" class="button secondary" data-price-metric="educationTFPMultiplier">Chart skills effect ↑</button><p class="small muted">Capital-weighted firm technology in this model, normalised to 100 at opening. This is the technology component of productivity. The national PWT measure and the model’s output-based residual are different measures.</p></article></div><p class="small muted">Labour income is the gross wage bill, including paid research. Gross capital income is operating surplus before interest, profit tax and depreciation, including business research subsidies. The two income shares use their combined total: GDP income excluding net taxes. Taxes and subsidies remain in the separate market-price GDP and government accounts. Interest, dividends and direct taxes redistribute income and are not counted as extra GDP. Negative income components are retained.</p><div class="outcome-chart-actions"><button type="button" class="button secondary" data-price-metric="labourIncomeShare">Chart labour share ↑</button><button type="button" class="button secondary" data-price-metric="capitalIncomeShare">Chart capital share ↑</button></div><h3>Government surplus and assets</h3><div id="fiscal-outcome-detail"></div><p id="deficit-outcome" class="result-context"></p><button class="button secondary" data-price-metric="publicDeficitGDP">Chart deficit / GDP</button><p id="treasury-outcome"></p><p id="government-asset-note" class="small muted"></p><button type="button" class="text-button" data-price-metric="publicBondRedemptions">Chart bonds repaid ↑</button><div id="revision126-outcomes"></div><h3>Payment defaults, restructurings and exits</h3><div id="distress-breakdown"></div><p id="distress-note" class="small muted"></p><p class="small muted">Restructuring keeps a firm operating after its debt is reduced. With firm exit enabled, default normally closes the firm instead. A restructuring required by the minimum-firm numerical limit is reported separately in the event log.</p></section><section class="panel content-panel mechanism-card" id="mechanism-diagnostics"></section><section class="panel content-panel sensitivity-card"><div class="section-header"><div><div class="eyebrow">UNESTIMATED RULES</div><h2>Does the sign depend on your assumptions?</h2></div><button class="button secondary" id="sensitivity-button">Check assumption sensitivity</button></div><p class="small muted">Eight illustrative specifications, up to five paired seeds each. No parameter search or empirical confidence interval.</p><div id="sensitivity-results"></div></section><div id="run-cautions" class="evidence-callout hidden" role="status"></div><div class="result-label"><span id="result-label">Ready for your first experiment</span><span id="stale-label" class="hidden">Settings changed · rerun to update</span></div><section class="kpi-grid" id="kpis" aria-live="polite"></section>
+<section id="paired-inference" class="panel content-panel inference-panel hidden" aria-live="polite"></section>
+<section class="chart-card panel"><div class="section-header"><div><div class="eyebrow">DYNAMIC RESPONSE</div><h2 id="chart-title">A different path for the economy</h2></div><select id="metric" aria-label="Chart metric"></select></div><div class="chart-tools"><div class="legend"><span><i class="dot scenario"></i>Scenario</span><span><i class="dot reference"></i>Reference</span><span class="band-legend">Scenario middle 95% · P2.5–P97.5</span></div><div class="segmented"><button class="active" data-scale="index">Index (start = 100)</button><button data-scale="level">Level</button><button data-scale="gap">Difference</button></div></div><div id="main-chart" class="main-chart" aria-label="Simulation time series"></div><div class="chart-footer"><span id="chart-caption">Reference period 0 = 100</span><span>Model year →</span></div></section>
+<section class="panel content-panel price-card" aria-labelledby="prices-heading">
+  <div class="section-header price-heading">
+    <div><div class="eyebrow">PURCHASING POWER</div><h2 id="prices-heading">Prices and inflation</h2></div>
+    <div class="price-chart-buttons">
+      <button type="button" class="button secondary" data-price-metric="inflation">Chart inflation ↑</button>
+      <button type="button" class="button secondary" data-price-metric="consumerPriceIndex">Chart consumer prices ↑</button>
+      <button type="button" class="button secondary" data-price-metric="nominalOutput">Chart nominal GDP ↑</button>
+    </div>
+  </div>
+  <p class="small muted">Choose <strong>Money &amp; prices</strong> to try a spending-speed shock. Use the charts to compare the price level with real production.</p>
+  <div id="price-results" class="price-results"></div>
+  <div class="section-header price-heading">
+    <h3>Money and spending in the final year</h3>
+    <div class="price-chart-buttons">
+      <button type="button" class="button secondary" data-price-metric="privateMoney">Chart money ↑</button>
+      <button type="button" class="button secondary" data-price-metric="moneyVelocity">Chart spending velocity ↑</button>
+      <button type="button" class="button secondary" data-price-metric="output">Chart real GDP ↑</button>
+    </div>
+  </div>
+  <div id="money-results" class="price-results"></div>
+  <details><summary>How prices change</summary>
+    <p>The price signal compares opening household and business money multiplied by spending velocity with the goods produced in the previous year. Faster spending or more money at the same output adds to price pressure. More output at the same spending power eases it.</p>
+    <p>The central bank’s target guides its rate decisions. Consumer inflation measures the annual change in prices including VAT. The consumer price index opens at 100, and average annual inflation compounds the change from year 0 to the final year.</p>
+  </details>
+</section>
+<section class="panel content-panel price-card" aria-labelledby="monetary-heading">
+  <div class="section-header price-heading">
+    <div><div class="eyebrow">MONETARY POLICY &amp; FOREIGN ACCESS</div><h2 id="monetary-heading">Interest rates and the currency</h2></div>
+    <div class="price-chart-buttons">
+      <button type="button" class="button secondary" data-price-metric="policyRate">Chart policy rate ↑</button>
+      <button type="button" class="button secondary" data-price-metric="realPolicyRate">Chart rate after inflation ↑</button>
+      <button type="button" class="button secondary" data-price-metric="currencyStrength">Chart nominal currency ↑</button>
+      <button type="button" class="button secondary" data-price-metric="effectiveForeignContact">Chart foreign access ↑</button>
+    </div>
+  </div>
+  <p class="small muted" id="monetary-context">Choose <strong>Policy &amp; currency</strong> to run the experiment.</p>
+  <div id="monetary-results" class="price-results"></div>
+  <details><summary>How the channels work</summary>
+    <p>The central bank responds to last year’s inflation with a zero nominal-rate floor. For sustained very low inflation near that floor, it can buy existing public bonds by creating reserves and matching seller deposits where appropriate. A higher policy rate slows spending and raises business borrowing costs. The currency tends to weaken when the policy rate after inflation falls below the foreign basket’s real rate. You can also set a currency shock.</p>
+    <p>The currency index starts at 100. Below 100 means weaker against the modeled foreign basket. Depreciation puts upward pressure on prices and reduces the chance of reaching foreign technology. The opposite applies to appreciation. Imported production costs feed partly into domestic producer prices, reducing some of the real-price advantage of depreciation. The strength is an editable assumption; a neutral current account is not imposed.</p>
+  </details>
+</section>
+<div class="lower-grid"><section class="panel agents-card"><div class="section-header"><div><div class="eyebrow">INSIDE THE ECONOMY</div><h2>Firms enter, exit and learn</h2></div><span id="agent-count" class="outline-badge">60 firms</span></div><div class="agent-chart-wrap"><canvas id="agent-canvas" width="700" height="340" aria-label="Firm knowledge network. Circle area shows productive capital; colour shows technology."></canvas><div class="network-key"><span>Lower technology</span><i></i><span>Higher technology</span></div></div><div id="network-size-legend" class="network-size-legend" aria-label="Firm size scale in real productive-capital units"></div><div class="time-control"><button id="play-timeline" class="icon-button" aria-label="Play agent timeline">▶</button><input type="range" id="agent-time" min="0" max="40" value="40" aria-label="Agent display year"><span id="agent-time-label">Year 40</span></div><p class="small muted" id="agent-caption">One reproducible scenario seed. Circle area shows productive capital on a fixed scale across years; lines show knowledge connections.</p><div id="firm-detail" class="firm-detail">Hover over a firm to inspect its balance sheet.</div></section><section class="panel transmission-card"><div class="eyebrow">FOLLOW THE TRANSMISSION</div><h2>Beyond productivity</h2><p class="small muted">Median final-period levels. Changes can pull in different directions.</p><div id="transmission-stats"></div><div id="accounting-status" class="accounting-pill">Accounting checks run with every step</div></section></div><section class="panel content-panel renewal-card" id="renewal-panel" aria-live="polite"></section><section class="panel content-panel sector-card hidden" id="sector-dynamics" aria-labelledby="sector-heading">
+  <div class="section-header sector-heading">
+    <div><div class="eyebrow">FOLLOW THE TRANSACTIONS</div><h2 id="sector-heading">Sector interactions</h2></div>
+    <label class="sector-select">Displayed economy <select id="sector-economy"><option value="scenario">Scenario</option><option value="baseline">Reference</option></select></label>
+  </div>
+  <div class="time-control sector-time-control">
+    <button id="play-sector-timeline" type="button" class="icon-button" aria-label="Play sector timeline" aria-pressed="false">▶</button>
+    <input type="range" id="sector-time" min="0" max="40" value="40" aria-label="Sector display year">
+    <span id="sector-time-label">Year 40</span>
+  </div>
+  <p class="small muted" id="sector-caption"></p>
+  <div class="sector-domestic">
+    <div class="sector-map-panel">
+      <div class="eyebrow">DOMESTIC ECONOMY</div>
+      <h3>Four sectors</h3>
+      <div id="sector-map"></div>
+      <p class="small muted">Select a sector for its accounts or an arrow for individual transfers. Thicker arrows indicate larger transfers.</p>
+    </div>
+    <div class="sector-ledger">
+      <label class="sector-select">Inspect a relationship <select id="sector-relationship"></select></label>
+      <div id="sector-flow-detail"></div>
+    </div>
+  </div>
+  <section class="sector-finance" id="sector-overview" aria-labelledby="sector-overview-name">
+    <div class="section-header sector-overview-heading">
+      <div><div class="eyebrow">SECTOR ACCOUNTS</div><h3 id="sector-overview-name" aria-live="polite">Households</h3></div>
+      <label class="sector-select">Selected sector <select id="sector-overview-select"></select></label>
+    </div>
+    <p class="small muted" id="sector-overview-context"></p>
+    <div class="sector-overview-grid">
+      <div class="sector-ledger" id="sector-overview-balance"></div>
+      <div class="sector-ledger" id="sector-overview-flows"></div>
+    </div>
+    <p class="small muted">Totals cover the other three domestic sectors. Wages and investment income are shown before tax. Borrowing, securities purchases and principal repayments are in the relationship ledger. Foreign payments are shown in the Foreign sector.</p>
+  </section>
+  <section class="sector-finance" aria-labelledby="sector-market-heading">
+    <div class="section-header price-heading">
+      <div><div class="eyebrow">BANKS AND FINANCIAL MARKETS</div><h3 id="sector-market-heading">Financial sector</h3></div>
+      <div class="price-chart-buttons">
+        <button type="button" class="button secondary" data-price-metric="householdDeposits">Chart liquid deposits ↑</button>
+        <button type="button" class="button secondary" data-price-metric="marketPurchases">Chart market purchases ↑</button>
+      </div>
+    </div>
+    <p id="sector-market-status"></p>
+    <dl class="sector-assumptions" id="sector-portfolio-values"></dl>
+    <h4>Deposit interest</h4>
+    <dl class="sector-assumptions" id="sector-deposit-values"></dl>
+    <h4>New funding from households</h4>
+    <dl class="sector-assumptions" id="sector-market-values"></dl>
+    <details><summary>Corporate bond payments and losses</summary><dl class="sector-assumptions" id="sector-market-returns"></dl></details>
+    <p class="small muted">Shares and bonds shown here are new issues. Equity is measured at the amount paid in. Unfilled orders stay liquid unless a current account surplus redirects them abroad.</p>
+  </section>
+  <section class="sector-finance" aria-labelledby="sector-fiscal-heading">
+    <div class="section-header price-heading">
+      <div><div class="eyebrow">GOVERNMENT AND BANKS</div><h3 id="sector-fiscal-heading">Public purchases and borrowing</h3></div>
+      <div class="price-chart-buttons">
+        <button type="button" class="button secondary" data-price-metric="government">Chart public purchases ↑</button>
+        <button type="button" class="button secondary" data-price-metric="investment">Chart business investment ↑</button>
+        <button type="button" class="button secondary" data-price-metric="effectiveLoanRate">Chart business loan rate ↑</button>
+        <button type="button" class="button secondary" data-price-metric="publicDebtRate">Chart public debt rate ↑</button>
+        <button type="button" class="button secondary" data-price-metric="publicCreditWeight">Chart public-debt weight ↑</button>
+      </div>
+    </div>
+    <dl class="sector-assumptions" id="sector-fiscal-values"></dl>
+    <p class="small muted" id="sector-credit-note"></p>
+    <h4>Tax rates and receipts</h4>
+    <dl class="sector-assumptions" id="sector-tax-values"></dl>
+  </section>
+  <section class="sector-finance" aria-labelledby="sector-saving-heading">
+    <div class="eyebrow">NATIONAL ACCOUNTS</div>
+    <h3 id="sector-saving-heading">Saving − investment = current account</h3>
+    <dl class="sector-assumptions" id="sector-saving-values"></dl>
+    <p class="small muted">Investment here means fixed investment plus changes in inventories. Buying shares or bonds finances activity through a separate financial transaction. In this model, the current account equals goods exports minus imports plus household foreign investment income. Figures are rounded.</p>
+    <details><summary>Saving by domestic sector</summary><dl class="sector-assumptions" id="sector-saving-detail"></dl></details>
+  </section>
+  <section class="sector-foreign" aria-labelledby="foreign-sector-heading">
+    <div class="section-header sector-foreign-header">
+      <div><div class="eyebrow">OUTSIDE THE DOMESTIC ECONOMY</div><h3 id="foreign-sector-heading">Foreign sector</h3></div>
+      <span class="sector-external-link">Foreign markets ↔ Domestic economy</span>
+    </div>
+    <h4>Trade and real exchange rate</h4>
+    <p id="foreign-trade-result"></p>
+    <dl class="sector-assumptions" id="foreign-trade-values"></dl>
+    <p class="small muted">Real currency strength compares local producer prices with the foreign basket priced in domestic currency. Above 100 means local goods are relatively dearer than at opening. Trade orders respond to the real exchange rate and the technology of domestic firms relative to foreign competitors. Sellers fill the highest price bids first.</p>
+    <div class="price-chart-buttons">
+      <button type="button" class="button secondary" data-price-metric="realExchangeRate">Chart real currency ↑</button>
+      <button type="button" class="button secondary" data-price-metric="exports">Chart exports ↑</button>
+      <button type="button" class="button secondary" data-price-metric="imports">Chart imports ↑</button>
+      <button type="button" class="button secondary" data-price-metric="currentAccount">Chart current account ↑</button>
+    </div>
+    <section class="foreign-accounting" aria-labelledby="foreign-accounting-heading"><h4 id="foreign-accounting-heading">Net foreign assets follow the current account</h4><p class="foreign-accounting-rule">Change in net foreign assets = current account = saving − investment</p><p class="small muted">Net foreign assets are foreign assets minus foreign liabilities at acquisition cost. Their annual change is calculated from settled payments and must equal the current account. It cannot be set separately. Household portfolio choices change who holds the assets, not this national total.</p><dl class="sector-assumptions" id="foreign-net-values"></dl><p class="small muted">Currency gains and losses are shown separately. The position at the current exchange rate equals net foreign assets at acquisition cost plus cumulative currency valuation. Gross settlement assets and funding start from a matched, empirically scaled stock and roll over. They stay positive in surplus and deficit years. The model assumes no separate capital transfers.</p><div class="price-chart-buttons"><button type="button" class="button secondary" data-price-metric="netForeignAssets">Chart net foreign assets ↑</button><button type="button" class="button secondary" data-price-metric="netForeignAssetChange">Chart annual change ↑</button></div></section>
+    <h4>Import tariffs</h4><p class="small muted">Set Import tariff in the economy controls or choose the Import tariff experiment. Duty raises the price of imported goods. Households pay it to government, and VAT applies to the duty-inclusive price. Foreign exporters receive the border value. Real GDP uses opening tax rates so a tariff increase does not mechanically count as extra real production.</p><div class="price-chart-buttons"><button type="button" class="button secondary" data-price-metric="importTariff">Chart tariff rate ↑</button><button type="button" class="button secondary" data-price-metric="importTariffRevenue">Chart tariff revenue ↑</button><button type="button" class="button secondary" data-price-metric="foreignAssetsAtCost">Chart gross foreign assets ↑</button><button type="button" class="button secondary" data-price-metric="foreignLiabilities">Chart gross foreign liabilities ↑</button></div>
+    <h4>Household investments abroad</h4>
+    <p id="foreign-finance-result"></p>
+    <dl class="sector-assumptions" id="foreign-finance-values"></dl>
+    <div class="price-chart-buttons">
+      <button type="button" class="button secondary" data-price-metric="householdForeignAssets">Chart foreign assets ↑</button>
+      <button type="button" class="button secondary" data-price-metric="foreignAssetIncome">Chart foreign investment income ↑</button>
+    </div>
+    <section class="foreign-accounting" aria-labelledby="foreign-projection-heading">
+      <div class="eyebrow">ANNUAL EXTERNAL PROJECTION INPUTS</div><h4 id="foreign-projection-heading">Foreign productivity paths</h4>
+      <p id="foreign-projection-context"></p><dl class="sector-assumptions" id="foreign-projection-values"></dl>
+      <p class="small muted" id="foreign-projection-note"></p>
+      <div class="price-chart-buttons"><button type="button" class="button secondary" data-price-metric="foreignTFPIndexEUR">EU27 TFP path ↑</button><button type="button" class="button secondary" data-price-metric="foreignTFPIndexUSA">US TFP path ↑</button><button type="button" class="button secondary" data-price-metric="foreignTFPIndexCHN">China TFP path ↑</button><button type="button" class="button secondary" data-price-metric="foreignTFPIndexROW">Rest-of-world TFP path ↑</button><button type="button" class="button secondary" data-price-metric="foreignTFPGrowthCHN">Annual foreign growth ↑</button></div>
+      <p class="small muted">Choose Published foreign productivity paths and Foreign projection scenario in Set up your economy. Use the event planner for positive or negative growth surprises; a growth shock changes the accumulated level even after its annual effect ends.</p>
+      <a class="source-link" href="./data/foreign_pools.json" download>Annual paths, coverage and source definitions ↓</a>
+    </section>
+    <h4>Foreign technology</h4>
+    <p id="foreign-sector-result"></p>
+    <div class="table-wrap sector-donor-table">
+      <table>
+        <caption class="sector-sr-only">Foreign donor inputs, indices and adoption by source</caption>
+        <thead><tr><th scope="col">Source</th><th scope="col">TFP anchor / home</th><th scope="col">Applied annual TFP growth</th><th scope="col">Closing donor mean</th><th scope="col">Delayed donor benchmark</th><th scope="col">Contacts</th><th scope="col">Adoptions</th><th scope="col">Weighted gain</th></tr></thead>
+        <tbody id="foreign-sector-donors"></tbody>
+      </table>
+    </div>
+    <p class="small muted">Penn World Table productivity anchors the three donors at opening. Their growth follows the selected projection or fixed-rate mode above; the donor mean also includes the assumed leader premium. The rest-of-world pool excludes the USA and China and the home economy or home-area members. The named foreign pools do not overlap. Each contact draws a technology opportunity around the delayed donor benchmark. A firm can benefit from an individual contact even when the source’s average is lower.</p>
+    <details><summary>Foreign adoption settings for this year</summary><dl class="sector-assumptions" id="foreign-sector-settings"></dl></details>
+  </section>
+</section>
+<section class="panel content-panel household-outcomes hidden" id="household-outcomes" aria-labelledby="household-heading">
+  <div class="section-header sector-heading">
+    <div><div class="eyebrow">WHO RECEIVES THE INCOME AND HOLDS THE WEALTH?</div><h2 id="household-heading">Household inequality</h2></div>
+    <label class="sector-select">Displayed distribution <select id="distribution-economy" aria-label="Displayed distribution"><option value="scenario">Scenario</option><option value="baseline">Reference</option></select></label>
+  </div>
+  <div class="time-control sector-time-control"><label class="sector-select" for="household-time">Display year</label><input type="range" id="household-time" min="0" max="40" value="40" aria-label="Household display year"><span id="household-time-label">Year 40</span></div>
+  <p id="household-caption" class="small muted"></p><p id="household-benchmark-note" class="small muted"></p>
+  <div class="household-grid">
+    <section class="household-chart" aria-labelledby="income-trend-heading"><h3 id="income-trend-heading">Income inequality over time</h3><strong class="household-gini" id="incomeGini-value"></strong><span class="small muted" id="incomeGini-comparison"></span><div id="incomeGini-trend"></div><button type="button" class="text-button" data-price-metric="incomeGini">Inspect income trend ↑</button></section>
+    <section class="household-chart" aria-labelledby="wealth-trend-heading"><h3 id="wealth-trend-heading">Financial wealth inequality over time</h3><strong class="household-gini" id="wealthGini-value"></strong><span class="small muted" id="wealthGini-comparison"></span><div id="wealthGini-trend"></div><button type="button" class="text-button" data-price-metric="wealthGini">Inspect wealth trend ↑</button></section>
+  </div>
+  <p class="small muted">Gini measures how unequally a total is shared. Zero means equal amounts for everyone; higher values mean more inequality. Scenario is green; reference is dashed grey. The highlighted line marks the selected year.</p>
+  <div class="household-grid"><section class="household-chart" id="income-distribution"></section><section class="household-chart" id="wealth-distribution"></section></div>
+  <p class="small muted" id="household-opening-note"></p>
+  <div id="netwealth-distribution" class="distribution-panel"></div><p class="small muted">Recorded financial wealth includes deposits, government and corporate bonds, paid-in shares in active firms, and foreign securities at the current exchange rate. Funded pension claims are included. Housing and mortgages appear separately in recorded net wealth; unpriced original household firm/bank ownership remains outside this measure. These distributions are simulated, not survey estimates.</p>
+  <details><summary>Income and wealth by household group</summary><p class="small muted">Each column ranks households separately by income or wealth. A group contains 20% of households. The same households need not belong to the same group in both rankings.</p><div class="table-wrap"><table><caption>Share of the total and average amount in each group</caption><thead><tr><th scope="col">Ranked group</th><th scope="col">Income share</th><th scope="col">Average income</th><th scope="col">Wealth share</th><th scope="col">Average wealth</th></tr></thead><tbody id="household-quintiles"></tbody></table></div></details>
+  <section class="sector-finance" aria-labelledby="debt-ratio-heading"><div class="section-header price-heading"><h3 id="debt-ratio-heading">Debt relative to GDP</h3><div class="price-chart-buttons"><button type="button" class="button secondary" data-price-metric="publicDebtGDP">Chart public debt / GDP ↑</button><button type="button" class="button secondary" data-price-metric="privateDebtGDP">Chart private debt / GDP ↑</button></div></div><p class="small muted" id="debt-ratio-context"></p><div class="price-results debt-ratio-values" id="debt-ratio-values"></div><div id="private-debt-explanation" class="credit-explanation"></div><p class="small muted">Public debt includes claims held by households, the financial sector, the central bank and foreign creditors. Private debt includes modelled active business loans, corporate bonds and household mortgages. Deposits and shares are excluded to avoid double counting private borrowing.</p></section>
+</section>
+<section class="interpretation panel"><span class="insight-symbol" aria-hidden="true">↗</span><div>
+  <div class="eyebrow">FINDINGS FROM THIS SIMULATION</div>
+  <h3 id="insight-title">Run a simulation to compare the two economies</h3>
+  <p id="insight-text">The findings update after each completed run.</p>
+  <ul class="insight-findings" id="insight-findings"></ul>
+  <section class="insight-policy hidden" id="insight-policy-section" aria-labelledby="insight-policy-title">
+    <h4 id="insight-policy-title">What policy could take from this run</h4>
+    <ul class="insight-findings" id="insight-policy"></ul>
+  </section>
+</div></section><div class="research-note"><strong>A research simulation, with explicit assumptions.</strong> Opening inputs use country-specific Eurostat, PWT, Federal Reserve, OECD, NBS, UN and matched central-bank data. Some pension observations are older; missing inputs are labelled assumptions. Foreign paths use OECD’s 2025/2026 projection vintage. Sources were retrieved in November 2026. Firm behavior and innovation returns are assumptions. The new ABM has no demonstrated out-of-sample forecasting accuracy. <button class="inline-link" data-view="evidence">See the evidence →</button></div></div></div></section>
+<section class="view hidden" id="evidence-view"></section><section class="view hidden" id="guide-view"></section></main><footer class="site-footer"><span>Innovation Observatory</span><span>Innovation ABM · engine 1.31</span><span>Private research workspace</span></footer></div>
+<div id="toast" class="toast hidden" role="status"></div><dialog id="events-dialog" aria-labelledby="events-heading" aria-describedby="events-description">
+<form id="event-form">
+  <header class="event-dialog-header"><div><div class="eyebrow">SCENARIO EVENT PLANNER</div><h2 id="events-heading">Exogenous events &amp; shocks</h2></div><button type="button" class="icon-button" data-close-events aria-label="Close event planner">×</button></header>
+  <p id="events-description" class="small muted">One period is one year. Year 0 is the opening economy. An event can affect several channels at once. Effects apply to the scenario; the reference stays unchanged.</p>
+  <div class="event-dialog-tools"><button type="button" class="button secondary" data-event-template="custom">+ Add event</button><span class="small muted">Examples</span><button type="button" class="preset-pill" data-event-template="downturn">Economic downturn</button><button type="button" class="preset-pill" data-event-template="production">Production boost</button><button type="button" class="preset-pill" data-event-template="exports">Export boom</button><button type="button" class="preset-pill" data-event-template="innovation">Foreign innovation surge</button></div>
+  <p class="small muted">The selected experiment’s parameter assumptions and event effects are filled below. Example sizes are editable assumptions.</p><p id="event-draft-note" class="assumption-note" role="status"></p>
+  <div class="event-editor-grid"><div id="event-list"></div><aside class="event-preview-panel" aria-labelledby="event-preview-heading"><div class="eyebrow" id="event-horizon"></div><h3 id="event-preview-heading">Effects and assumptions</h3><div id="event-parameter-preview"></div><div id="event-calendar"></div><p class="small muted">Solid bars show full strength; pale bars show a remaining effect.</p><label class="event-year-control" for="event-preview-year">Inspect year <output id="event-preview-year-label" for="event-preview-year">Year 4</output></label><input type="range" id="event-preview-year" aria-label="Event preview year" min="0" max="40" value="4"><div id="event-preview"></div><p class="small muted">This preview shows imposed changes, not GDP or inflation forecasts. The simulation determines the resulting outcomes.</p><details><summary>How timing and effects combine</summary><p class="small muted">The full effect lasts for the selected duration, including the start year. Afterward, 0% ends it immediately, 50% halves it each following year, and 100% keeps it in place. Overlapping percentage shocks multiply. Rate, currency and foreign TFP growth offsets add. The model’s constraints and policy responses still apply.</p><p class="small muted">Parameter assumptions shown in this planner use the same step, gradual or temporary paths as the main page. They are applied together with event shocks.</p></details></aside></div>
+  <footer class="event-dialog-footer"><div><span class="small" id="event-count" aria-live="polite">0 events</span><p id="event-error" class="event-error" role="alert"></p></div><div class="event-dialog-actions"><button type="button" class="button secondary" data-close-events>Cancel</button><button type="submit" class="button secondary">Apply inputs</button><button type="button" class="button primary" id="apply-events-run">Apply &amp; run simulation</button></div></footer>
+</form>
+</dialog>
+<dialog id="export-dialog"><form method="dialog"><div class="section-header"><h2>Keep a reproducible experiment</h2><button class="icon-button" aria-label="Close export">×</button></div><p>Exports preserve the settings used for the displayed results.</p><div class="export-options"><button type="button" class="button primary" id="download-json">Full experiment · JSON</button><button type="button" class="button secondary" id="download-events">Displayed firm events · CSV</button><button type="button" class="button secondary" id="download-csv">All seed results · CSV</button><button type="button" class="button secondary" id="download-summary">Summary paths · CSV</button><button type="button" class="button secondary" id="download-chart">Current chart · SVG</button></div><p class="small muted">JSON includes both economies, interventions, all seeds and accounting checks.</p></form></dialog><script type="module" src="./app.mjs"></script></body></html>

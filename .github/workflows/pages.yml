@@ -24,23 +24,33 @@ jobs:
     steps:
       - name: Check out hosting repository
         uses: actions/checkout@v4
-      - name: Restore and verify the preserved engine 1.30 source
+      - name: Restore and verify the preserved source
         shell: bash
         run: |
           set -euo pipefail
-          test -f source/innovation_observatory_source.zip
           echo '7f27eb8de94e035c53c63732bbe6e34a49b20f8be400265276242ddfcc0f4b68  source/innovation_observatory_source.zip' | sha256sum --check -
           python3 -m zipfile --extract source/innovation_observatory_source.zip restored
           python3 restored/innovation_observatory/scripts/unpack_source_fixtures.py
-      - name: Preserve the baseline and apply reviewed source changes
+      - name: Restore the verified 1.30.1 release
         run: |
           python3 patches/engine-1.30.1/scripts/freeze_engine130.py restored/innovation_observatory
           cp -a patches/engine-1.30.1/. restored/innovation_observatory/
-      - name: Verify retirement reporting and unchanged economic paths
+      - name: Preserve the prior engine and apply tax corrections
+        run: |
+          python3 patches/engine-1.31.0/scripts/freeze_engine1301.py restored/innovation_observatory
+          cp -a patches/engine-1.31.0/. restored/innovation_observatory/
+      - name: Reproduce the retained retirement study
         working-directory: restored/innovation_observatory
         run: |
-          node tests/retirement-pensions.mjs
           node tests/revision1301.mjs
+          node scripts/build_revision1301_summary.mjs
+      - name: Verify current taxpayer and policy-control behaviour
+        working-directory: restored/innovation_observatory
+        run: |
+          node tests/versioned-runtime.mjs
+          node tests/payroll-tax.mjs
+          node tests/revision131.mjs
+          node tests/retirement-pensions.mjs
           node tests/configuration.mjs
           node tests/tariff-fiscal.mjs
           node tests/inference.mjs
@@ -49,18 +59,19 @@ jobs:
           node tests/noncash-pension.mjs
           node --check dist/app.mjs
           node --check dist/findings.mjs
-          node --check dist/revision126-view.mjs
-      - name: Build the current evidence and full reproducible source download
+          node --check dist/sector-view.mjs
+          node --check dist/revision131-view.mjs
+      - name: Build evidence and the complete reproducible source download
         working-directory: restored/innovation_observatory
         run: |
-          node scripts/build_revision1301_summary.mjs
+          node scripts/build_revision131_summary.mjs
           node scripts/build_audit.mjs
           python3 scripts/bundle_source_fixtures.py
           python3 scripts/package_source.py
+          python3 scripts/version_assets.py --version "$GITHUB_SHA"
           touch dist/.nojekyll
-          test -s dist/index.html
           test -s dist/data/profiles.json
-          test -s dist/data/revision1301_validation.json
+          test -s dist/data/revision131_validation.json
           test -s dist/data/innovation_observatory_source.zip
       - name: Configure Pages
         uses: actions/configure-pages@v5

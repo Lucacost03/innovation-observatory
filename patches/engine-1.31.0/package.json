@@ -1,0 +1,27 @@
+{
+  "name": "innovation-observatory",
+  "version": "1.31.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node tests/versioned-runtime.mjs && node tests/payroll-tax.mjs && node tests/revision131.mjs && node scripts/build_revision131_summary.mjs && node tests/retirement-pensions.mjs && node tests/revision1301.mjs && node tests/tariff-fiscal.mjs && node tests/revision130.mjs && node scripts/build_revision130_summary.mjs && node tests/participation-import-cost.mjs && node tests/revision129.mjs && node scripts/build_revision129_summary.mjs && node tests/credit-policy.mjs && node tests/revision128.mjs && node scripts/build_revision128_summary.mjs && node tests/inference.mjs && node tests/revision127.mjs && node scripts/build_revision127_summary.mjs && python3 tests/fiscal-source-audit.py && node tests/fiscal-reconciliation.mjs && node tests/revision126.mjs && node scripts/build_revision126_summary.mjs && node tests/defense.mjs && node tests/noncash-pension.mjs && node tests/continuous-bids.mjs && node tests/macro-external.mjs && node tests/education-tfp.mjs && node tests/education-income.mjs && node tests/global-inputs.mjs && node tests/startup-funding.mjs && node tests/configuration.mjs && node tests/event-schedule.mjs && node tests/counters.mjs && node tests/finance.mjs && node tests/trade.mjs && node tests/external-finance.mjs",
+    "test:global": "node tests/global-inputs.mjs",
+    "test:prior-study-scripts": "node tests/social-spending.mjs && node tests/macro-policy.mjs && node tests/event-inputs.mjs && node tests/foreign-projections.mjs && node tests/society.mjs && node tests/income-fiscal.mjs && node tests/capital-inputs.mjs && node tests/event-schedule.mjs && node tests/household-trade.mjs && node tests/distribution.mjs && node tests/validate.mjs && node tests/configuration.mjs && node tests/diffusion.mjs && node tests/turnover.mjs && node tests/counters.mjs && node tests/employment.mjs && node tests/sector-flows.mjs && node tests/prices.mjs && node tests/open-economy.mjs && node tests/fiscal.mjs && node tests/trade.mjs && node tests/finance.mjs && node tests/external-finance.mjs && node tests/live-economy.mjs",
+    "test:education": "node tests/education-income.mjs",
+    "test:macro": "node tests/macro-external.mjs",
+    "test:trade-bids": "node tests/continuous-bids.mjs",
+    "pretest": "python3 scripts/unpack_source_fixtures.py",
+    "test:fiscal": "python3 tests/fiscal-source-audit.py && node tests/fiscal-reconciliation.mjs && node tests/revision126.mjs && node scripts/build_revision126_summary.mjs && node tests/defense.mjs && node tests/noncash-pension.mjs",
+    "test:revision126": "node tests/revision126.mjs",
+    "test:revision127": "node tests/inference.mjs && node tests/revision127.mjs && node scripts/build_revision127_summary.mjs",
+    "test:revision128": "node tests/credit-policy.mjs && node tests/revision128.mjs && node scripts/build_revision128_summary.mjs",
+    "test:revision129": "python3 research/participation_1_29/extract.py && node tests/participation-import-cost.mjs && node tests/revision129.mjs && node scripts/build_revision129_summary.mjs",
+    "test:revision130": "python3 research/tariffs_1_30/rebuild.py && python3 research/fiscal_latest_1_30/extract.py && python3 research/fiscal_latest_1_30/extract_capital.py && node tests/tariff-fiscal.mjs && node tests/revision130.mjs && node scripts/build_revision130_summary.mjs",
+    "test:retirement": "node tests/retirement-pensions.mjs && node tests/revision1301.mjs",
+    "test:payroll": "node tests/payroll-tax.mjs && node tests/revision131.mjs && node scripts/build_revision131_summary.mjs",
+    "test:runtime": "node tests/versioned-runtime.mjs"
+  }
+}
