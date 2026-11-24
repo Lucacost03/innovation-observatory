@@ -1,0 +1,65 @@
+{
+  "status": "Published wording; text editing removed",
+  "changes": [
+    {
+      "key": "scenario.custom.title",
+      "original": "Ask your own economic question.",
+      "text": "02  /  Set up the effects that you want to study",
+      "section": "Experiment assumptions"
+    },
+    {
+      "key": "static.copy.001",
+      "original": "INNOVATION",
+      "text": "",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.002",
+      "original": "OBSERVATORY",
+      "text": "",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.003",
+      "original": "ABM / 01",
+      "text": "",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.004",
+      "original": "YOUR ECONOMY. YOUR EXPERIMENT.",
+      "text": "",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.005",
+      "original": "Innovation, in motion",
+      "text": "Simulates the dynamics of an economic system by using an Agent-Based Model",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.006",
+      "original": "Change the assumptions. Follow the firms. See the economy respond.",
+      "text": "",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.007",
+      "original": "Set up your economy",
+      "text": "Set up the initial conditions of your economy",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.008",
+      "original": "02 / SET UP YOUR EXPERIMENT · THE QUESTION",
+      "text": "",
+      "section": "Simulator"
+    },
+    {
+      "key": "static.copy.009",
+      "original": "Choose your assumptions before running.",
+      "text": "",
+      "section": "Simulator"
+    }
+  ]
+}

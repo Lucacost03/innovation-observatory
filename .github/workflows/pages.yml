@@ -36,8 +36,12 @@ jobs:
         run: |
           python3 patches/engine-1.31.0/scripts/freeze_engine1301.py restored/innovation_observatory
           cp -a patches/engine-1.31.0/. restored/innovation_observatory/
-      - name: Apply the website wording editor
-        run: cp -a patches/website-text-editor/. restored/innovation_observatory/
+      - name: Apply finalized wording without website editing
+        run: |
+          cp -a patches/website-final-wording/. restored/innovation_observatory/
+          test ! -e restored/innovation_observatory/dist/site-text-editor.mjs
+          test ! -e restored/innovation_observatory/dist/site-text-editor.css
+          test ! -e restored/innovation_observatory/dist/site-text-model.mjs
       - name: Reproduce the retained retirement study
         working-directory: restored/innovation_observatory
         run: |
@@ -46,7 +50,6 @@ jobs:
       - name: Verify current taxpayer and policy-control behaviour
         working-directory: restored/innovation_observatory
         run: |
-          node tests/site-text.mjs
           node tests/versioned-runtime.mjs
           node tests/payroll-tax.mjs
           node tests/revision131.mjs

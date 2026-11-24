@@ -2,7 +2,7 @@
 
 Interactive agent-based economic simulator, engine 1.31.0, published at [Innovation Observatory](https://lucacost03.github.io/innovation-observatory/).
 
-The preserved `source/innovation_observatory_source.zip` is the verified engine 1.30.0 base (SHA256 `7f27eb8de94e035c53c63732bbe6e34a49b20f8be400265276242ddfcc0f4b68`). It remains unchanged. Reviewed source overlays are applied in order from `patches/engine-1.30.1/` and `patches/engine-1.31.0/`, using original project-relative paths.
+The preserved `source/innovation_observatory_source.zip` is the verified engine 1.30.0 base (SHA256 `7f27eb8de94e035c53c63732bbe6e34a49b20f8be400265276242ddfcc0f4b68`). It remains unchanged. Reviewed source overlays are applied in order from `patches/engine-1.30.1/` and `patches/engine-1.31.0/`, followed by `patches/website-final-wording/`, using original project-relative paths.
 
 GitHub Actions verifies the base, retains the 1.30 and 1.30.1 engines and inputs, reproduces the historical retirement study, tests the current tax corrections, and builds the complete current source download. Deployments do not require the original host. The website ZIP includes code, frozen baselines, source observations, methods, executed comparisons and tests.
 
@@ -15,4 +15,4 @@ The deployed module graph and simulation worker use a shared release identifier,
 Saved 1.30 and 1.30.1 controls and schedules are retained. Personal browser-local experiments are not stored in this repository. Statistical intervals describe model seed uncertainty, not uncertainty about empirical model validity.
 
 
-Website wording can be drafted directly with **Edit website text**. The `patches/website-text-editor/` overlay adds local drafts, search, undo, restoration and text-only JSON import/export. Drafts never write to the public website or alter model settings. To publish a downloaded wording file, apply it with `scripts/apply_site_text.mjs`, review the preview, and update the overlay's `dist/site-copy-data.mjs`. Details are in the source ZIP's `research/WEBSITE_TEXT_EDITING.md`.
+The final `patches/website-final-wording/` overlay keeps the ten approved wording edits directly in the page and custom-experiment heading. The text editor and all draft/import/export controls are removed, and browser-local wording drafts are no longer read. Visitors can change economic assumptions and run experiments. The approved wording is recorded in the source download's `research/FINAL_WEBSITE_WORDING.json`. Earlier editor source remains in repository history; it is not applied or shipped in the current website.
