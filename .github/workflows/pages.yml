@@ -16,11 +16,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out hosting repository
         uses: actions/checkout@v4
@@ -79,6 +76,14 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: restored/innovation_observatory/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Publish the website
         id: deployment
         uses: actions/deploy-pages@v5
