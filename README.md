@@ -13,3 +13,6 @@ The controlled audit covers all 30 presets, five common seeds, 120/12-year basel
 The deployed module graph and simulation worker use a shared release identifier, with a cache-regression integration test against the prior engine. The clean source is packaged before deployment-only URL versioning.
 
 Saved 1.30 and 1.30.1 controls and schedules are retained. Personal browser-local experiments are not stored in this repository. Statistical intervals describe model seed uncertainty, not uncertainty about empirical model validity.
+
+
+Website wording can be drafted directly with **Edit website text**. The `patches/website-text-editor/` overlay adds local drafts, search, undo, restoration and text-only JSON import/export. Drafts never write to the public website or alter model settings. To publish a downloaded wording file, apply it with `scripts/apply_site_text.mjs`, review the preview, and update the overlay's `dist/site-copy-data.mjs`. Details are in the source ZIP's `research/WEBSITE_TEXT_EDITING.md`.
