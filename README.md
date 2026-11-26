@@ -19,3 +19,5 @@ The final `patches/website-final-wording/` overlay keeps the ten approved wordin
 
 
 Essentials now highlights exactly 37 initial controls covering the main innovation, diffusion, firm-renewal, financial and macroeconomic channels, with the full registry under All parameters. Opening/refreshing the site and importing an experiment restore inputs without starting a simulation. Runs begin through the Run simulation button or an explicit calculation button in the event planner or sensitivity panel.
+
+The Run simulation controls follow the section 02 experiment setup and comparison. A separate, full-width 03 / EXPERIMENT RESULTS section marks where outputs begin. The idle Ready prompt and opening audit notice are removed; actual loading progress and execution errors remain available.

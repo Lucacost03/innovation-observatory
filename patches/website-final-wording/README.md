@@ -413,3 +413,8 @@ The ten approved text edits are built directly into the HTML and the custom-expe
 Essentials shows exactly 37 controls covering innovation and diffusion, firm renewal, knowledge links, initial labour and inequality, demand and investment, finance, trade, public policy and simulation design. The full registry remains under All parameters. The selection prioritizes coverage of this model’s main channels; it is not an empirically estimated ranking.
 
 Opening or refreshing the website, switching economies or presets, and importing experiment settings do not start simulations. Use Run simulation to compute the configured experiment. Apply & run simulation in the event planner and Check assumption sensitivity remain explicit buttons for their respective calculations.
+
+
+## Configuration and results layout
+
+The idle Ready prompt and opening audit notice are removed. Run simulation and Stop simulation sit after the section 02 assumptions and comparison, followed by a distinct full-width experiment-results section. Loading progress and execution errors remain available during an actual task. Simulation startup is manual, Essentials retains 37 controls, and the finalized wording stays in place.
