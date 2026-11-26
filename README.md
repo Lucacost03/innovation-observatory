@@ -16,3 +16,6 @@ Saved 1.30 and 1.30.1 controls and schedules are retained. Personal browser-loca
 
 
 The final `patches/website-final-wording/` overlay keeps the ten approved wording edits directly in the page and custom-experiment heading. The text editor and all draft/import/export controls are removed, and browser-local wording drafts are no longer read. Visitors can change economic assumptions and run experiments. The approved wording is recorded in the source download's `research/FINAL_WEBSITE_WORDING.json`. Earlier editor source remains in repository history; it is not applied or shipped in the current website.
+
+
+Essentials now highlights exactly 37 initial controls covering the main innovation, diffusion, firm-renewal, financial and macroeconomic channels, with the full registry under All parameters. Opening/refreshing the site and importing an experiment restore inputs without starting a simulation. Runs begin through the Run simulation button or an explicit calculation button in the event planner or sensitivity panel.

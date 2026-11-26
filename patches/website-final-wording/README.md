@@ -406,3 +406,10 @@ The other sector views expose existing country targets and current configured po
 ## Final website wording
 
 The ten approved text edits are built directly into the HTML and the custom-experiment heading. The website text editor, its controls, draft import/export and browser-local text overrides are removed. Economic settings, experiment controls and saved economic configurations remain supported. The approved wording is recorded in `research/FINAL_WEBSITE_WORDING.json`.
+
+
+## Essentials and manual simulation start
+
+Essentials shows exactly 37 controls covering innovation and diffusion, firm renewal, knowledge links, initial labour and inequality, demand and investment, finance, trade, public policy and simulation design. The full registry remains under All parameters. The selection prioritizes coverage of this model’s main channels; it is not an empirically estimated ranking.
+
+Opening or refreshing the website, switching economies or presets, and importing experiment settings do not start simulations. Use Run simulation to compute the configured experiment. Apply & run simulation in the event planner and Check assumption sensitivity remain explicit buttons for their respective calculations.
