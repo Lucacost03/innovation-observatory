@@ -418,3 +418,8 @@ Opening or refreshing the website, switching economies or presets, and importing
 ## Configuration and results layout
 
 The idle Ready prompt and opening audit notice are removed. Run simulation and Stop simulation sit after the section 02 assumptions and comparison, followed by a distinct full-width experiment-results section. Loading progress and execution errors remain available during an actual task. Simulation startup is manual, Essentials retains 37 controls, and the finalized wording stays in place.
+
+
+## Net-wealth inequality display
+
+The household inequality trend and its inspection button use the existing netWealthGini series: recorded financial assets, including funded pension claims, plus dwelling values minus mortgage debt. The financial-asset and net-wealth distributions remain separately labelled. Survey net-wealth references are contextual rather than fitted opening targets. Undefined and negative-total Ginis retain their existing handling. The Only you badge and results-divider subtitle are removed. These presentation changes do not alter engine equations, empirical inputs, saved assumptions or simulation paths.
